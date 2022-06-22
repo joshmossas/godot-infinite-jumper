@@ -7,6 +7,7 @@
 extents = Vector2( 31.5, 31.5 )
 
 [node name="Player" type="KinematicBody2D"]
+collision_mask = 7
 script = ExtResource( 2 )
 
 [node name="Sprite" type="Sprite" parent="."]
@@ -16,6 +17,17 @@ texture = ExtResource( 1 )
 position = Vector2( 0.5, -0.5 )
 shape = SubResource( 1 )
 
-[node name="Camera2D" type="Camera2D" parent="."]
-current = true
-smoothing_enabled = true
+[node name="FloorDetectorLeft" type="RayCast2D" parent="."]
+position = Vector2( -30, 31 )
+enabled = true
+collision_mask = 2
+
+[node name="FloorDetectorCenter" type="RayCast2D" parent="."]
+position = Vector2( 0, 30 )
+enabled = true
+collision_mask = 2
+
+[node name="FloorDetectorRight" type="RayCast2D" parent="."]
+position = Vector2( 31, 30 )
+enabled = true
+collision_mask = 2
