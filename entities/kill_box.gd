@@ -17,5 +17,6 @@ func _ready():
 
 
 func _on_Area2D_body_entered(body:Node):
-	get_tree().reload_current_scene()
+	if body.name == "Player":
+		get_tree().reload_current_scene()
 	pass # Replace with function body.

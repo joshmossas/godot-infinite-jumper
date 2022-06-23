@@ -1,13 +1,14 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=8 format=2]
 
-[ext_resource path="res://entities/Player.tscn" type="PackedScene" id=1]
-[ext_resource path="res://entities/Floor.tscn" type="PackedScene" id=2]
-[ext_resource path="res://entities/KillBox.tscn" type="PackedScene" id=3]
-[ext_resource path="res://scenes/SceneMover.gd" type="Script" id=4]
+[ext_resource path="res://entities/player.tscn" type="PackedScene" id=1]
+[ext_resource path="res://entities/floor.tscn" type="PackedScene" id=2]
+[ext_resource path="res://entities/kill_box.tscn" type="PackedScene" id=3]
+[ext_resource path="res://scenes/scene_mover.gd" type="Script" id=4]
 [ext_resource path="res://scenes/main_scene.gd" type="Script" id=5]
+[ext_resource path="res://entities/event_box.tscn" type="PackedScene" id=6]
 
 [sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 907.5, 461.75 )
+extents = Vector2( 907.5, 57.125 )
 
 [node name="Node2D" type="Node2D"]
 script = ExtResource( 5 )
@@ -46,25 +47,36 @@ position = Vector2( 1, 0 )
 script = ExtResource( 4 )
 
 [node name="Label" type="Label" parent="Node2D"]
-margin_left = -492.0
-margin_top = -324.0
-margin_right = -267.0
-margin_bottom = -266.0
+margin_left = -468.0
+margin_top = 200.0
+margin_right = -243.0
+margin_bottom = 217.0
 text = "Score: 0"
 
 [node name="Camera2D" type="Camera2D" parent="Node2D"]
 current = true
+process_mode = 0
 smoothing_enabled = true
 offset_v = -1.0
 
 [node name="KillBox" parent="Node2D" instance=ExtResource( 3 )]
 position = Vector2( 7, 514 )
 
-[node name="Area2D" type="Area2D" parent="Node2D"]
+[node name="FloorTeleportBox" type="Area2D" parent="Node2D"]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Node2D/Area2D"]
-visible = false
-position = Vector2( 3, -22 )
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Node2D/FloorTeleportBox"]
+position = Vector2( 2, 500 )
 shape = SubResource( 1 )
 
-[connection signal="body_exited" from="Node2D/Area2D" to="." method="_on_Area2D_body_exited"]
+[node name="EventBoxLeft" parent="Node2D" instance=ExtResource( 6 )]
+position = Vector2( -600, 13 )
+scale = Vector2( 1, 12 )
+
+[node name="EventBoxRight" parent="Node2D" instance=ExtResource( 6 )]
+position = Vector2( 600, 1 )
+scale = Vector2( 1, 12 )
+
+[connection signal="body_entered" from="Node2D/FloorTeleportBox" to="." method="_on_Area2D_body_entered"]
+[connection signal="body_exited" from="Node2D/FloorTeleportBox" to="." method="_on_Area2D_body_exited"]
+[connection signal="body_entered" from="Node2D/EventBoxLeft" to="." method="_on_EventBoxLeft_body_entered"]
+[connection signal="body_entered" from="Node2D/EventBoxRight" to="." method="_on_EventBoxRight_body_entered"]

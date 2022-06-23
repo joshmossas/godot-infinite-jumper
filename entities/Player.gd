@@ -8,8 +8,8 @@ extends KinematicBody2D
 var UP = Vector2(0, -1)
 var SLOPE_STOP = 64
 var velocity = Vector2()
-var move_speed = 5 * 96
-var gravity = 4000
+var move_speed = 6 * 96
+var gravity = 3500
 var jump_velocity = -1200
 var is_grounded = false
 
