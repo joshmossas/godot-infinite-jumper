@@ -42,7 +42,15 @@ position = Vector2( 10, -267 )
 position = Vector2( -257, 408 )
 
 [node name="Node2D" type="Node2D" parent="."]
+position = Vector2( 1, 0 )
 script = ExtResource( 4 )
+
+[node name="Label" type="Label" parent="Node2D"]
+margin_left = -492.0
+margin_top = -324.0
+margin_right = -267.0
+margin_bottom = -266.0
+text = "Score: 0"
 
 [node name="Camera2D" type="Camera2D" parent="Node2D"]
 current = true
@@ -55,6 +63,7 @@ position = Vector2( 7, 514 )
 [node name="Area2D" type="Area2D" parent="Node2D"]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Node2D/Area2D"]
+visible = false
 position = Vector2( 3, -22 )
 shape = SubResource( 1 )
 

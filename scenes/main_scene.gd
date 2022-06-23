@@ -14,6 +14,14 @@ func _ready():
 #func _process(delta):
 #	pass
 
+var score = 0.0;
+
+func _process(delta):
+	score += 10 * delta
+	var label = get_node("Node2D/Label") as Label
+	label.text = "Score: " + str(score)
+	pass
+
 var rng = RandomNumberGenerator.new()
 
 func randomXPosition():
